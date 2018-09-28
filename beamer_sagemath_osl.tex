@@ -1,0 +1,279 @@
+\documentclass[dvipsnames]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage{beamerthemesplit}
+\usetheme{Warsaw}
+%\usecolortheme{default}
+\usepackage[]{natbib}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{multimedia}
+\usepackage[spanish]{babel}
+
+\usepackage{enumerate}
+\usepackage{amsmath,amsthm}
+\usepackage{amsfonts,amssymb,latexsym}
+\usepackage{keystroke}
+
+\usepackage{relsize}
+
+\title[Presentación de la Ponencia]{
+  Uso de \htmladdnormallink{\texttt{Sagemath}}{https://www.sagemath.org/}\\ 
+  en la\\
+  Investigación y la Docencia}
+\author
+[Jornadas de la OSL de la UGR]
+{Fco. M. García Olmedo y P. González Rodelas}
+\institute{\textsc{Dpto. Álgebra y Mat. Aplicada}\\[5mm]
+  \htmladdnormallink{\includegraphics[width=0.15\textwidth]{./sage_logo_new_l_hc_edgy-nq8.png}}
+      {https://www.sagemath.org/}
+}
+\date{28 de septiembre de 2018} 
+\AtBeginSection{\frame{\frametitle{Tabla de contenidos}
+\tableofcontents[currentsection]}}
+
+\begin{document}
+
+\frame{\titlepage}
+\frame{\tableofcontents}
+
+\section{Descripción General}
+
+\begin{frame}[fragile]{¿Qué es \texttt{sage}?}
+  \frametitle{¿Qué es \texttt{Sagemath}?}
+  \begin{block}{Clave: Es un sistema computacional de cálculo escrito
+      en \texttt{Cython}%, una bifurcación de \texttt{Pyrex}
+    }
+    Reune y \textcolor{red}{unifica} bajo un solo techo, lenguaje y
+    gerarquía de objetos toda una colección de software matemático,
+    \textcolor{red}{rellenando} los huecos de funcionalidad de todos
+    ellos.
+  \end{block}\pause 
+  \begin{itemize}[<+->]
+  \item Previamente se llamó \textcolor{red}{\texttt{Sage}}, acrónimo
+    de \textcolor{OliveGreen}{``System for Algebra and Geometry
+      Experimentation''}.
+  \item El proyecto está liderado por \textcolor{red}{William Stein}
+    de la Univ. de Washington.
+  \item Crear una \textcolor{red}{alternativa} a los
+    \textcolor{red}{sistemas propietario} llevaría sería un
+    \textcolor{red}{trabajo colosal}.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Características}
+  \frametitle{¿Qué es \texttt{Sagemath}?}
+  \begin{itemize}[<+->]
+  \item Existencia de gran cantidad de \textcolor{red}{software bien
+      probado} pero de naturaleza heterogénea, que
+    \textcolor{red}{podría ser unificado}.
+  \item \textcolor{red}{Desarrollado por}: estudiantes, becarios y
+    profesionales.
+  \item Financiado con trabajo \textcolor{red}{voluntario} y
+    \textcolor{red}{donaciones}.
+  \item Distribuido bajo licencia \textcolor{red}{GNU V2 o posterior}.
+%  \item Se puede usar en la \textcolor{red}{versión en línea}
+%    \htmladdnormallink{\texttt{cocalc.com}}{https://cocalc.com/}.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Características}
+  \frametitle{Características}
+  \begin{itemize}[<+->]
+  \item Pretende \textcolor{red}{rendir como} \texttt{C} con un código
+    escrito en \texttt{Python}.
+  \item El \textcolor{red}{lenguaje} de programación es
+    \textcolor{red}{actualmente} \texttt{Python 2.7}, con toda su
+    funcionalidad.
+  \item Puede ejecutarse en una \textcolor{red}{consola} basada en
+    \texttt{iPython}.
+  \item Incluye una \textcolor{red}{interfax} gráfica (servidor SageNB
+    o Jupyter).
+  \item \textcolor{red}{Cálculo simbólico} usando \texttt{Maxima} y \texttt{SymPy}.
+  \item \textcolor{red}{Bibliotecas propias} especiales, entre otros
+    para Teoría de Números.
+  \item Herramientas para el \textcolor{red}{proceso de imágenes}
+    mediante \texttt{Pylab} y \texttt{Python}.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Características}
+  \frametitle{Características}
+  \begin{itemize}[<+->]
+  \item Capacidad de \textcolor{red}{importar} y
+    \textcolor{red}{exportar} datos, imágenes, vídeos, sonido, etc.
+  \item Capacidad de \textcolor{red}{embeber} \texttt{Sagemaht} en
+    documentos \textcolor{red}{\LaTeX}.
+  \end{itemize}
+\end{frame}
+
+\section{Aspectos Técnicos}
+
+\begin{frame}[fragile]{Peculiaridades}
+  \frametitle{Peculiaridades}
+  \begin{block}{Clave: \texttt{Sagemath} soporta cálculos con objetos
+      de diferentes sistemas algebraicos de computación ``bajo un
+      mismo techo''}
+    éstos son \textcolor{red}{\texttt{GP/Pari}},
+    \textcolor{red}{\texttt{GAP}}, \textcolor{red}{\texttt{Singular}}
+    y \textcolor{red}{\texttt{Maxima}}, usando una interfax común y un
+    lenguaje de programación límpio.
+  \end{block}\pause 
+  \begin{itemize}[<+->]
+  \item Los archivos de \texttt{Sagemath} tienen extensión
+    \textcolor{red}{\texttt{.sage}} y pueden ser leídos con distintas
+    funcionalidades: \textcolor{red}{\texttt{load}} (\textcolor{OliveGreen}{estático}) o
+    \textcolor{red}{\texttt{attach}} (\textcolor{OliveGreen}{dinámico}).
+  \item Una vez \textcolor{red}{leídos} son
+    \textcolor{red}{traducidos} a \texttt{Python} e
+    \textcolor{red}{interpretados}.
+  \item Es posible dar \textcolor{red}{rapidez} implementando en
+    \textcolor{red}{un lenguaje compilado} y \textcolor{red}{mediante
+      tipos estáticos}.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Peculiaridades}
+  \frametitle{Peculiariades}
+  \begin{itemize}[<+->]
+  \item Los ficheros tendrán \textcolor{red}{extensión \texttt{.spyx}}
+    en lugar de \texttt{.sage}.
+  \item \textcolor{red}{Serán escritos} en una \textcolor{red}{versión
+      compilada} de \texttt{Python} llamada \texttt{Cython} (extensión
+    de \texttt{Python} y \texttt{C}).
+  \item El código en \textcolor{red}{\texttt{Cython} admite} la mayoría de rasgos de
+    \texttt{Python}: listas por compresión, expresiones condicionales,
+    código con \texttt{+=}, código de módulos de \texttt{Python}, etc.
+  \item El código en \textcolor{red}{\texttt{Cython} admite} la
+    mayoría de rasgos de \texttt{C}: declaración de variables, hacer
+    llamadas a bibliotecas de \texttt{C}, etc.
+  \item El código es \textcolor{red}{convertido} a código \texttt{C} y
+    es \textcolor{red}{compilado} con un compilador de \texttt{C}.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Peculiaridades}
+  \frametitle{Peculiaridades}
+  \begin{itemize}[<+->]
+  \item La compilación ocurre \textcolor{red}{detrás del escenario},
+    sin acción específica del usuario.
+  \item Los archivos resultantes son \textcolor{red}{eliminados} al
+    salir de \texttt{Sagemath}.
+  \item Puede ser \textcolor{red}{invocado} \texttt{Sagemath} \textcolor{red}{desde} un
+    esquema de \textcolor{red}{\texttt{Python}}, siempre que el directorio base de
+    \texttt{Sagemath} este en el \texttt{PATH}.
+  \item También puede ser \textcolor{red}{invocado} \texttt{Sagemath}
+    \textcolor{red}{desde} un fichero escrito de acuerdo a las reglas
+    de \textcolor{red}{\texttt{\LaTeX}}.
+  \end{itemize}
+\end{frame}
+
+\section{Instalación}
+
+\begin{frame}[fragile]{Instalación}
+  \frametitle{Instalación}
+  \begin{block}{Clave: actualmente es posible usar \texttt{Sagemath}
+      en las
+      \htmladdnormallink{platamormas}{https://www.sagemath.org/download.html}:}
+    Mac OS, Linux, Solaris y OpenSolaris. A esa lista se añadió
+    recientemente Windows.
+  \end{block}\pause 
+  \begin{itemize}[<+->]
+  \item En \textcolor{red}{Mac OS} la instalación es según el proceso
+    habitual a partir de un fichero \texttt{.dmg}, bien como una \textcolor{red}{app
+    tradicional} o para ser \textcolor{red}{usado en la línea} de órdenes Unix.
+  \item En \textcolor{red}{Linux} es por respositorio
+    \htmladdnormallink{\textcolor{red}{PPA}}{https://launchpad.net/~aims/+archive/ubuntu/sagemath}
+    o
+    \htmladdnormallink{\textcolor{red}{manual}}{https://wildunix.es/posts/instalar-sage-en-mac-os-x-ubuntu-y-otros-linux-uso-bajo-windows/}.
+  \item En Windows \htmladdnormallink{\textcolor{red}{descargaremos un
+      .exe}}{https://github.com/sagemath/sage-windows/releases} y
+    haremos una instalción al uso con él.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Uso online}
+  \frametitle{Uso online}
+  \begin{block}{Clave: \texttt{Sagemath} puede ser usado online}
+    siendo  \htmladdnormallink{cocalc}{https://cocalc.com/} el sitio
+    más popular.
+  \end{block}
+\end{frame}
+
+\section{De \texttt{sagenb} a \texttt{jupyter}}
+
+\begin{frame}[fragile]{Reciclado}
+  \frametitle{Reciclado}
+  \begin{block}{Clave: el servidor \texttt{sagenb} está en absoluto
+      declive por muchas razones, entre otras por su dificultad para
+      interactuar con la nube.}
+    Actualmente los usuarios se han volcado en el uso bajo
+    \texttt{jupyter}. Si tenemos trabajo en ficheros \texttt{.sws}
+    habremos de pasarlos a formato \texttt{.ipynb}.
+  \end{block}\pause 
+  \begin{itemize}[<+->]
+  \item La operación se realiza sólo una vez con un esquema en
+    \texttt{Python}
+  \item El script es \texttt{sagenb-export} que se instala con
+    \texttt{pip}.
+  \item La recuperación es fichero a fichero y está detallada en
+    \htmladdnormallink{wildunix}{https://wildunix.es/posts/instalar-sage-en-mac-os-x-ubuntu-y-otros-linux-uso-bajo-windows/}.
+  \end{itemize}
+\end{frame}
+
+\section{Conclusiones}
+
+\begin{frame}[fragile]{Conclusiones}
+  \frametitle{Conclusiones}
+  \begin{block}{Clave: Valoración de \texttt{Sagemath}}
+      como sistema de computación.
+  \end{block}\pause
+  \begin{itemize}[<+->]
+  \item Tener licencia \textcolor{OliveGreen}{GNU V2 o posterior}
+  \item Usar \textcolor{OliveGreen}{Python} como lenguaje de programación.
+  \item Haber sido capaz de dar servicio vía \textcolor{OliveGreen}{Jupyter}.
+  \item La interesante solución de \textcolor{OliveGreen}{Cython} para
+    beneficiar la rapidez.
+  \item \textcolor{OliveGreen}{Aprovechar y Unificar} los distintos sistemas
+    de cálculo que han dado resultado y están especializados en áreas
+    del mismo.
+  \item \textcolor{OliveGreen}{Bibliotecas propias} desarrolladas por el
+    proyecto.
+  \item Funcionamiento \textcolor{OliveGreen}{muy competitivo} en
+    determinadas facetas.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Conclusiones}
+  \frametitle{Conclusiones}
+  \begin{itemize}[<+->]
+  \item Usar \textcolor{red}{Python 2.7} todavía.
+  \item Hacer \textcolor{red}{hincapié} en \textcolor{red}{compatibilizar}.
+  \item \textcolor{red}{Escasos recursos} para el desarrollo.
+  \item \textcolor{red}{No} existir una \textcolor{red}{perspectiva
+      clara} de \textcolor{red}{desarrollo de bibliotecas propias}.
+  \item \textcolor{red}{No} ser más \textcolor{red}{accesible} el
+    comité de desarrollo.
+  \end{itemize}
+\end{frame}
+
+\end{document}
+
+\begin{frame}[fragile]{}
+  \frametitle{}
+  \begin{block}{Clave: }
+  \end{block}\pause 
+  \begin{itemize}[<+->]
+  \item
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{}
+  \frametitle{}
+  \begin{itemize}[<+->]
+
+  \end{itemize}
+\end{frame}
+
+\htmladdnormallink{palabra}{dirección}
+
